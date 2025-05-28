@@ -1,0 +1,15 @@
+﻿
+@media (max-width: 768px) {
+    .car-card-container {
+        padding: 30px 15px;
+    }
+
+    .car-title {
+        font-size: 20px;
+    }
+
+    .btn-detail {
+        padding: 10px 24px;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,14 @@
+﻿@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 18px;
+    }
+
+    .nav-link {
+        font-size: 15px;
+    }
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

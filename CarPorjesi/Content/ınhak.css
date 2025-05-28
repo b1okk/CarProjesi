@@ -1,0 +1,9 @@
+﻿@keyframes count-up {
+    0% {
+        content: "0";
+    }
+
+    100% {
+        content: "1000";
+    }
+}

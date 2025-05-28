@@ -1,0 +1,268 @@
+﻿@model List<CarPorjesi.Models.Cars>
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var sonEklenenArac = Model.OrderByDescending(x => x.ID).FirstOrDefault();
+}
+
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="@Url.Content("~/Content/ıncss.css")" rel="stylesheet" type="text/css" />
+
+@if (sonEklenenArac != null)
+{
+    <div class="son-eklenen-kutu">
+        <h3>Satışa Yeni Çıkan Araç</h3>
+        <div class="son-eklenen-card">
+            <img src="@sonEklenenArac.PhotoPath" alt="@sonEklenenArac.Marka @sonEklenenArac.Model" />
+            <div class="son-bilgi">
+                <h4>@sonEklenenArac.Marka - @sonEklenenArac.Model</h4>
+                <p>Yıl: @sonEklenenArac.Yıl | KM: @sonEklenenArac.km</p>
+                <p><strong>@sonEklenenArac.Fiyat ₺</strong></p>
+                <a href="/Home/İletişim" class="btn-son-detay">Detay</a>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="car-card-container">
+    @foreach (var item in Model)
+    {
+        <div class="car-card">
+            <div class="card-inner">
+                <!-- Ön Yüz -->
+                <div class="card-front">
+                    <div class="car-image">
+                        <img src="@item.PhotoPath" alt="@item.Marka @item.Model" />
+                        <div class="image-overlay"></div> <!-- bu satırı ekle -->
+                    </div>
+                    <div class="car-content">
+                        <h4 class="car-title">@item.Marka - @item.Model</h4>
+                        <div class="car-details">
+                            <span><i class="fas fa-calendar-alt"></i> Yıl: @item.Yıl</span>
+                            <span><i class="fas fa-tachometer-alt"></i> KM: @item.km</span>
+                            <span><i class="fas fa-cogs"></i> Vites: @item.VitesTipi</span>
+                            <span><i class="fas fa-gas-pump"></i> Yakıt: @item.YakıtTipi</span>
+                        </div>
+                        <div class="car-price">
+                            
+                            <strong>@item.Fiyat ₺</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arka Yüz -->
+                <div class="card-back">
+                    <div class="back-content">
+                        <h4>@item.Marka - @item.Model</h4>
+                        <p>@item.Fiyat ₺</p>
+                        <a href="/Home/İletişim?marka=@item.Marka&model=@item.Model&fiyat=@item.Fiyat" class="btn btn-primary">Detay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .son-eklenen-kutu {
+        margin: 40px auto;
+        padding: 30px;
+        max-width: 900px;
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        background: rgb(79,109,241);
+        background: linear-gradient(0deg, rgba(79,109,241,0.21052170868347342) 15%, rgba(75,255,250,0.13489145658263302) 50%);
+        text-align: center;
+    }
+
+        .son-eklenen-kutu h3 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #2e8bff;
+        }
+
+    .son-eklenen-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+    }
+
+        .son-eklenen-card img {
+            max-width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            height: 250px;
+            width: 100%;
+        }
+
+    .son-bilgi {
+        font-size: 16px;
+        color: #333;
+    }
+
+        .son-bilgi h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+    .btn-son-detay {
+        display: inline-block;
+        margin-top: 12px;
+        background: #2e8bff;
+        color: white;
+        padding: 10px 24px;
+        border-radius: 30px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+        .btn-son-detay:hover {
+            background: #006fd3;
+            transform: scale(1.05);
+        }
+
+    * {
+        font-family: 'Inter', sans-serif;
+    }
+
+    /*body {
+        background: linear-gradient(135deg, #eef2f3, #dff1ff);
+    }*/
+
+    .car-card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+        padding: 50px;
+        justify-items: center;
+    }
+
+    .car-card {
+        perspective: 1200px;
+        height: 440px;
+        width: 100%;
+        max-width: 360px;
+        transition: transform 0.6s ease-in-out;
+    }
+
+    .card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.9s ease;
+        border-radius: 24px;
+    }
+
+    .car-card:hover .card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 24px;
+        backface-visibility: hidden;
+        overflow: hidden;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 18px 35px rgba(0,0,0,0.15);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card-front {
+        background: rgba(255, 255, 255, 0.7);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-back {
+        background: linear-gradient(145deg, #2e8bff, #00bcd4);
+        color: white;
+        transform: rotateY(180deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .car-image img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .car-content {
+        padding: 20px 25px;
+    }
+
+    .car-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+    }
+
+    .car-details {
+        display: grid;
+        gap: 8px;
+        font-size: 15px;
+        color: #444;
+    }
+
+        .car-details i {
+            margin-right: 6px;
+            color: #2e8bff;
+        }
+
+    .car-price {
+        margin-top: 15px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #2e8bff;
+    }
+
+    .back-content {
+        text-align: center;
+        padding: 30px;
+    }
+
+        .back-content h4 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .back-content p {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+    .btn-detail {
+        display: inline-block;
+        background: white;
+        color: #2e8bff;
+        padding: 12px 32px;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    }
+
+        .btn-detail:hover {
+            background: #f0f0f0;
+            transform: scale(1.05);
+            color: #0077ff;
+        }
+</style>
+

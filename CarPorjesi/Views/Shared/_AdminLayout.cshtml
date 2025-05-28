@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Admin Paneli</title>
+    <link href="@Url.Content("~/Content/admin.css")" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/Admin.js"></script>
+    <!-- AdminLTE ve FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+<style>
+
+
+        /* Navbar yüksekliği */
+        .navbar {
+            height: 57px;
+            font-size: 18px;
+        }
+            /* Navbar'ın sol tarafına resim eklemek */
+            .navbar-brand img {
+                height: 40px; /* Resmin boyutunu ayarla */
+
+            }
+
+        /* Modern Arama Çubuğu Stili */
+        .search-bar {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            max-width: 500px;
+        }
+
+            .search-bar input {
+                width: 100%;
+                padding: 10px;
+                border-radius: 25px;
+                border: 1px solid #ddd;
+                outline: none;
+                transition: all 0.3s ease;
+            }
+
+                .search-bar input:focus {
+                    border-color: #007bff;
+                }
+
+            .search-bar button {
+                position: absolute;
+                right: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+            }
+
+                .search-bar button i {
+                    color: #007bff;
+                    font-size: 18px;
+                }
+
+            .search-bar input::placeholder {
+                color: #aaa;
+            }
+
+        /* Profil ve Mesaj Kutusu */
+        .navbar-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+            .navbar-icons .profile-icon,
+            .navbar-icons .message-icon {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                background-color: #007bff;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+                .navbar-icons .profile-icon:hover,
+                .navbar-icons .message-icon:hover {
+                    background-color: #0056b3;
+                }
+
+            .navbar-icons .message-icon {
+                position: relative;
+            }
+
+                .navbar-icons .message-icon::after {
+                    content: '3'; /* Mesaj sayısı */
+                    position: absolute;
+                    top: -5px;
+                    right: -5px;
+                    background-color: red;
+                    color: white;
+                    border-radius: 50%;
+                    font-size: 12px;
+                    padding: 2px 5px;
+                }
+                /* Spinner Animasyonu */
+        .loading-spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            margin: -30px 0 0 -30px;
+            border: 6px solid #ccc;
+            border-top-color: #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 9999;
+            display: none;
+            background-color: transparent;
+        }
+
+</style>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container">
+                <!-- Navbar sol tarafında logo resmi -->
+                <a href="#" class="navbar-brand">
+                    <img src="~/content/assets/ayar.png" alt="Proje Resmi">
+                </a>
+                <!-- Hamburger icon for mobile -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Sağdaki Arama Çubuğu ve Profil + Mesaj İkonları -->
+                <div class="navbar-icons d-flex align-items-center gap-3" style="position: absolute; right: 20px;">
+                    <!-- Arama Çubuğu -->
+                    <div class="search-bar">
+                        <input type="text" class="form-control" placeholder="Arama...">
+                        <button type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <!-- Profil ve Mesaj İkonları -->
+                    <div class="navbar-icons">
+                        <!-- Profil İkonu -->
+                        <div class="profile-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+
+                        <!-- Mesaj İkonu -->
+                        <div class="message-icon">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </nav>
+
+        <!-- Sidebar -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="#" class="brand-link">
+                <span class="brand-text font-weight-light">Admin Panel</span>
+            </a>    
+            <div class="sidebar">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                        <!-- Dashboard Menü Linki -->
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Home")" class="nav-link">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <!-- Ürün Ekle Menü Linki -->
+                        <li class="nav-item">
+                            <a href="@Url.Action("Create", "Admin")" class="nav-link">
+                                <i class="nav-icon fas fa-plus"></i>
+                                <p>Ürün Ekle</p>
+                            </a>
+                        </li>
+                        <!-- Araçlar Menü Linki -->
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Home")" class="nav-link">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>Araçlar</p>
+                            </a>
+                        </li>
+                        <!-- Hakkımızda Menü Linki -->
+                        <li class="nav-item">
+                            <a href="@Url.Action("Hakımda", "Home")" class="nav-link">
+                                <i class="nav-icon fas fa-info-circle"></i>
+                                <p>Hakkımızda</p>
+                            </a>
+                        </li>
+                        <!-- İletişim Menü Linki -->
+                        <li class="nav-item">
+                            <a href="@Url.Action("İletişim", "Home")" class="nav-link">
+                                <i class="nav-icon fas fa-envelope"></i>
+                                <p>İletişim</p>
+                            </a>
+                        </li>
+                        <!-- Çıkış Yap Menü Linki -->
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Home")" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>Çıkış Yap</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                @RenderBody() <!-- Sayfa içeriği buraya render edilecek -->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <strong>&copy; @DateTime.Now.Year By Mustafa Tarafından Hazırlandı</strong>
+        </footer>
+    </div>
+
+    <!-- AdminLTE ve jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <script>
+       $(document).ready(function () {
+        $(".nav-link").on("click", function (e) {
+            const linkText = $(this).text().trim();
+            if (linkText === "Dashboard") {
+                e.preventDefault();
+
+                // Spinner'ı göster
+                $("#spinner").fadeIn();
+
+                // 1.5 saniye sonra yönlendir
+                setTimeout(function () {
+                    window.location.href = "@Url.Action("Index", "Home")";
+                }, 1500);
+            }
+        });
+           // Tarayıcı 'geri' tuşu ile gelindiğinde de spinner'ı gizle
+           window.onpageshow = function (event) {
+               if (event.persisted) {
+                   $("#spinner").fadeOut();
+               }
+           };
+
+    });
+
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <div class="loading-spinner" id="spinner"></div>
+
+</body>
+</html>

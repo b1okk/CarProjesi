@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title | SC-Gear</title>
+    <link href="@Url.Content("~/Content/home.css")" rel="stylesheet" type="text/css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap & Custom CSS -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+<style>
+        body {
+            background: linear-gradient(135deg, #e0eafc, #cfdef3); /* Yumuşak mavi tonları */
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        /* Navbar'ı daha ince yapmak için height ve padding değerlerini küçülttük */
+        .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: background 0.3s ease-in-out;
+            padding: 13px 0; /* Navbar'ı daha ince yapmak için padding değerini küçülttük */
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            color: #2e8bff !important;
+            font-size: 20px; /* Font boyutunu biraz küçülttük */
+            transition: color 0.3s ease;
+        }
+
+            .navbar-brand:hover {
+                color: #0056b3 !important;
+            }
+
+        .nav-link {
+            color: #444 !important;
+            margin: 0 15px;
+            font-weight: 600;
+            font-size: 16px; /* Font boyutunu biraz küçülttük */
+            transition: all 0.3s ease;
+        }
+
+            .nav-link:hover {
+                color: #2e8bff !important;
+                transform: scale(1.1);
+            }
+
+        /* Navbar'daki butonun hizalanmasını sağlamak için */
+        .navbar-nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Giriş butonunu özelleştirdik */
+        .login-btn {
+            background-color: #2e8bff;
+            color: white;
+            font-size: 16px;
+            padding: 8px 15px; /* Butonun boyutunu küçülttük */
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-left: 20px;
+        }
+
+            .login-btn:hover {
+                background-color: #0056b3;
+                transform: scale(1.05);
+            }
+        .body-content {
+            padding: 50px 20px;
+            min-height: 80vh;
+            text-align: center;
+            background: rgb(79,109,241);
+            background: linear-gradient(0deg, rgba(79,109,241,0.21052170868347342) 15%, rgba(255,255,255,0.13489145658263302) 51%, rgba(75,255,250,0.13489145658263302) 86%);
+            border-radius: 20px; /* Köşeleri yuvarlat */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Kutu gölgesi */
+            backdrop-filter: blur(15px); /* Kutu içindeki arka planı bulanıklaştır */
+            max-width: 80%;
+            margin: 0 auto;
+        }
+
+            .body-content h1 {
+                font-size: 48px;
+                color: #4a90e2; /* Modern mavi yazı rengi */
+                margin-bottom: 20px;
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+
+            .body-content p {
+                font-size: 18px;
+                color: #555;
+                line-height: 1.8;
+                max-width: 750px;
+                margin: 0 auto;
+                padding-top: 15px;
+            }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 15px;
+            border-top: 1px solid #ddd;
+            margin-top: 50px;
+        }
+
+            footer p {
+                margin: 0;
+            }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        .loading-spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            margin: -30px 0 0 -30px;
+            border: 6px solid #ccc;
+            border-top-color: #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 9999;
+            display: none;
+            background-color: transparent;
+        }
+</style>
+</head>
+
+<body>
+    <!-- Spinner -->
+    <div id="spinner" class="loading-spinner"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            @Html.ActionLink("SC-Gear", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="#" class="nav-link" data-target="Araçlarımız">Araçlarımız</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-target="Hakkımızda">Hakkımızda</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-target="İletişim">İletişim</a></li>
+                </ul>
+                <!-- Giriş butonu -->
+                <button class="login-btn" onclick="window.location.href='/Home/Login'">Giriş</button>
+            </div>
+        </div>
+    </nav>
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
+    </div>
+
+    @if (ViewBag.SadeSayfa != true)
+    {
+        <div class="body-content">
+            @RenderBody()
+        </div>
+
+    }
+    else
+    {
+        @RenderBody()
+    }
+
+
+    @if (ViewBag.SadeSayfa1 != true)
+    {
+        <!-- Footer -->
+        <footer>
+            <p class="footer-text">© 2025 Mustafa Aktürk | SC-Gear</p>
+        </footer>
+    }
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        // Scroll effect for navbar
+        window.addEventListener("scroll", function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+    $(".nav-link").on("click", function (e) {
+        e.preventDefault(); // Linki tıklanmayı engelle
+
+        // Spinner'ı göster
+        $("#spinner").fadeIn();
+
+        // Tıklanan linkin metnini al
+        const linkText = $(this).text().trim();
+        let targetUrl = '';
+
+        // URL'yi tıklanan metne göre belirleyin
+        if (linkText === "Araçlarımız") {
+            targetUrl = '@Url.Action("Index", "Home")';  // Burada uygun URL'yi yazın
+        } else if (linkText === "Hakkımızda") {
+            targetUrl = '@Url.Action("Hakımda", "Home")';  // Burada uygun URL'yi yazın
+        } else if (linkText === "İletişim") {
+            targetUrl = '@Url.Action("İletişim", "Home")';  // Burada uygun URL'yi yazın
+        }
+
+        // 1.5 saniye sonra yönlendir
+        setTimeout(function () {
+            window.location.href = targetUrl;
+        }, 250); // 1.5 saniye sonra
+    });
+
+    // Tarayıcı 'geri' tuşu ile gelindiğinde spinner'ı gizle
+    window.onpageshow = function (event) {
+        if (event.persisted) {
+            $("#spinner").fadeOut();
+        }
+    };
+});
+
+
+    </script>
+
+</body>
+</html>

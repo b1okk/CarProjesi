@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using CarPorjesi.Models;
+@model List<Cars>
+
+<h2>Arabalar Listesi</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Marka</th>
+        <th>Model</th>
+        <th>Yıl</th>
+        <th>Fiyat</th>
+        <th>Plaka</th>
+        <th>Renk</th>
+        <th>km</th>
+        <th>YakıtTipi</th>
+        <th>VitesTipi</th>
+        <th>Durum</th>
+        <th>Fotoğraf</th> <!-- Fotoğraf sütunu ekledik -->
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.ID</td>
+            <td>@x.Marka</td>
+            <td>@x.Model</td>
+            <td>@x.Yıl</td>
+            <td>@x.Fiyat</td>
+            <td>@x.Plaka</td>
+            <td>@x.Renk</td>
+            <td>@x.km</td>
+            <td>@x.YakıtTipi</td>
+            <td>@x.VitesTipi</td>
+            <td>@x.Durum</td>
+            <td>
+                @if (!string.IsNullOrEmpty(x.PhotoPath))
+                {
+                    <img src="@x.PhotoPath" alt="Car Photo" width="100" height="70" />
+                }
+                else
+                {
+                    <span>Fotoğraf Yok</span>
+                }
+            </td>
+            <td><a href="/Admin/Araçsil/@x.ID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Admin/Edit/@x.ID" class="btn btn-warning">Güncelle</a></td>
+        </tr>
+    }
+</table>
+
+<p>
+    <a href="/Admin/Create" class="btn btn-primary">Yeni Araba</a>
+</p>

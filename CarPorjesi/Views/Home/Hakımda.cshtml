@@ -1,0 +1,200 @@
+﻿@{
+    ViewBag.Title = "Hakkımızda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.SadeSayfa = true;
+    ViewBag.SadeSayfa1 = true;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title | SC-Gear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0eafc, #cfdef3); /* Yumuşak mavi tonları */
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            padding-top: 100px; /* Sayfanın üst kısmına ekstra boşluk ekliyoruz */
+            padding-bottom: 50px; /* Footer'a yer kalması için padding */
+        }
+
+
+        .about-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            background: rgb(51,165,255);
+            background: linear-gradient(90deg, rgba(51,165,255,0.31416316526610644) 16%, rgba(219,240,238,1) 92%);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 80%;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .about-content {
+            max-width: 800px;
+            text-align: center;
+            padding: 20px;
+        }
+
+            .about-content h1 {
+                font-size: 48px;
+                color: #2e8bff;
+                margin-bottom: 20px;
+                font-weight: 700;
+            }
+
+            .about-content p {
+                font-size: 18px;
+                color: #555;
+                line-height: 1.8;
+                margin-bottom: 30px;
+            }
+
+        .about-image {
+            flex: 1;
+            max-width: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-left: 40px;
+        }
+
+            .about-image img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+        /* Navbar'a margin-bottom ekleyerek altına boşluk bırakıyoruz */
+    
+        .customer-count {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgb(189,215,250);
+            background: linear-gradient(90deg, rgba(189,215,250,1) 4%, rgba(203,236,242,1) 80%);
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 30px auto;
+            font-size: 16px;
+            font-weight: 600;
+            color: #555;
+           
+        }
+
+            .customer-count .label {
+                font-size: 18px;
+                color: #333;
+            }
+
+        .counter {
+            font-size: 30px;
+            font-weight: 800;
+            color: #4a90e2;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+            .social-icons a {
+                margin: 0 15px;
+                text-decoration: none;
+            }
+
+            .social-icons img {
+                width: 40px;
+                height: 40px;
+                transition: transform 0.3s ease;
+            }
+
+                .social-icons img:hover {
+                    transform: scale(1.1);
+                }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="about-container">
+        <div class="about-content">
+            <h1>@ViewBag.Title</h1>
+            <p>
+                SC-Gear, <span class="highlight">en yeni ve kaliteli araç fırsatlarını</span> sunarak, müşterilerimizin
+                güvenle araç alım satım işlemlerini gerçekleştirmesini sağlıyor. Teknolojiyi en verimli şekilde
+                kullanarak, her zaman en güncel fırsatlarla sizlerle buluşuyoruz.
+            </p>
+            <p>
+                Web sitemiz üzerinden aracınızı kolayca bulabilir, satın alabilir veya satabilirsiniz. Misyonumuz,
+                araç sahiplerini güvenli, hızlı ve şeffaf bir ortamda bir araya getirmektir.
+            </p>
+
+            <!-- Müşteri Sayısı Kutusu Burada, Misyon Yazısının Altında Ortalı -->
+            <div class="customer-count">
+                <div class="label">Müşteri Sayısı :</div>
+                <div class="counter" id="customerCount">0+</div>
+            </div>
+
+            <!-- Sosyal Medya Logoları Burada -->
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank">
+                    <img src="~/Content/assets/insta.png" alt="Instagram">
+                </a>
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="~/Content/assets/face.png" alt="Facebook">
+                </a>
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="~/Content/assets/wp.png" alt="Facebook">
+                </a>
+            </div>
+        </div>
+
+        <div class="about-image">
+            <img src="~/Content/assets/Foto.png" alt="SC-Gear Hakkında Görseli" />
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        const target = 1000;
+
+        function updateCount() {
+            if (count < target) {
+                count++;
+                document.getElementById("customerCount").innerText = count + "+";
+                setTimeout(updateCount, 10); // Hızlandırmak istersen süreyi kısalt
+            }
+        }
+
+        window.onload = updateCount;
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">© 2025 By Mustafa | SC-Gear</p>
+    </footer>
+
+</body>
+</html>
